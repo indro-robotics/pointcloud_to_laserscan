@@ -56,9 +56,9 @@ int main(int argc, char * argv[])
     "x", 1, sensor_msgs::msg::PointField::FLOAT32,
     "y", 1, sensor_msgs::msg::PointField::FLOAT32,
     "z", 1, sensor_msgs::msg::PointField::FLOAT32);
-  modifier.resize(node->declare_parameter("cloud_size", 100));
-  std::mt19937 gen(node->declare_parameter("cloud_seed", 0));
-  double extent = node->declare_parameter("cloud_extent", 10.0);
+  modifier.resize(node->declare_parameter<std::int>("cloud_size", 100));
+  std::mt19937 gen(node->declare_parameter<std::int>("cloud_seed", 0));
+  double extent = node->declare_parameter<std::int>("cloud_extent", 10.0);
   std::uniform_real_distribution<float> distribution(-extent / 2, extent / 2);
   sensor_msgs::PointCloud2Iterator<float> it_x(dummy_cloud, "x");
   sensor_msgs::PointCloud2Iterator<float> it_y(dummy_cloud, "y");
@@ -68,7 +68,7 @@ int main(int argc, char * argv[])
     *it_y = distribution(gen);
     *it_z = distribution(gen);
   }
-  dummy_cloud.header.frame_id = node->declare_parameter("cloud_frame_id", "");
+  dummy_cloud.header.frame_id = node->declare_parameter<std::string>("cloud_frame_id", "");
 
   rclcpp::executors::SingleThreadedExecutor executor;
   executor.add_node(node);

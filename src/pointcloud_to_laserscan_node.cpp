@@ -64,16 +64,16 @@ PointCloudToLaserScanNode::PointCloudToLaserScanNode(const rclcpp::NodeOptions &
   // achievable by the associated executor
   input_queue_size_ = this->declare_parameter(
     "queue_size", static_cast<int>(std::thread::hardware_concurrency()));
-  min_height_ = this->declare_parameter("min_height", std::numeric_limits<double>::min());
-  max_height_ = this->declare_parameter("max_height", std::numeric_limits<double>::max());
-  angle_min_ = this->declare_parameter("angle_min", -M_PI);
-  angle_max_ = this->declare_parameter("angle_max", M_PI);
-  angle_increment_ = this->declare_parameter("angle_increment", M_PI / 180.0);
-  scan_time_ = this->declare_parameter("scan_time", 1.0 / 30.0);
-  range_min_ = this->declare_parameter("range_min", 0.0);
-  range_max_ = this->declare_parameter("range_max", std::numeric_limits<double>::max());
-  inf_epsilon_ = this->declare_parameter("inf_epsilon", 1.0);
-  use_inf_ = this->declare_parameter("use_inf", true);
+  min_height_ = this->declare_parameter<std::double>("min_height", std::numeric_limits<double>::min());
+  max_height_ = this->declare_parameter<std::double>("max_height", std::numeric_limits<double>::max());
+  angle_min_ = this->declare_parameter<std::double>("angle_min", -M_PI);
+  angle_max_ = this->declare_parameter<std::double>("angle_max", M_PI);
+  angle_increment_ = this->declare_parameter<std::double>("angle_increment", M_PI / 180.0);
+  scan_time_ = this->declare_parameter<std::double>("scan_time", 1.0 / 30.0);
+  range_min_ = this->declare_parameter<std::double>("range_min", 0.0);
+  range_max_ = this->declare_parameter<std::double>("range_max", std::numeric_limits<double>::max());
+  inf_epsilon_ = this->declare_parameter<std::double>("inf_epsilon", 1.0);
+  use_inf_ = this->declare_parameter<bool>("use_inf", true);
 
   pub_ = this->create_publisher<sensor_msgs::msg::LaserScan>("scan", rclcpp::SensorDataQoS());
 
