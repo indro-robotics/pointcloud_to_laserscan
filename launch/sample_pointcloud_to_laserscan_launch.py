@@ -10,12 +10,12 @@ def generate_launch_description():
             name='scanner', default_value='scanner',
             description='Namespace for sample topics'
         ),
-        Node(
-            package='pointcloud_to_laserscan', executable='dummy_pointcloud_publisher',
-            remappings=[('cloud', [LaunchConfiguration(variable_name='scanner'), '/cloud'])],
-            parameters=[{'cloud_frame_id': 'cloud', 'cloud_extent': 2.0, 'cloud_size': 500}],
-            name='cloud_publisher'
-        ),
+        #Node(
+        #    package='pointcloud_to_laserscan', executable='dummy_pointcloud_publisher',
+        #    remappings=[('cloud', [LaunchConfiguration(variable_name='scanner'), '/cloud'])],
+        #    parameters=[{'cloud_frame_id': 'cloud', 'cloud_extent': 2.0, 'cloud_size': 500}],
+        #    name='cloud_publisher'
+        #),
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
