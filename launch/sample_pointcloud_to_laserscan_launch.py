@@ -24,7 +24,7 @@ def generate_launch_description():
         ),
         Node(
             package='pointcloud_to_laserscan', executable='pointcloud_to_laserscan_node',
-            remappings=[('cloud_in', [LaunchConfiguration(variable_name='scanner'), '/cloud']),
+            remappings=[('cloud_in', ['/velodyne_points']),
                         ('scan', ['/scan'])],
             parameters=[{
                 'target_frame': 'base_link',
